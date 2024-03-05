@@ -2357,9 +2357,9 @@ object POBenangFrm: TPOBenangFrm
             FontSize = 8
           end
           object QRLPPN2: TQRLabel
-            Left = 442
+            Left = 467
             Top = 38
-            Width = 51
+            Width = 26
             Height = 15
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -2368,14 +2368,14 @@ object POBenangFrm: TPOBenangFrm
             Frame.DrawRight = False
             Size.Values = (
               39.687500000000000000
-              1169.458333333333000000
+              1235.604166666667000000
               100.541666666666700000
-              134.937500000000000000)
+              68.791666666666670000)
             Alignment = taRightJustify
             AlignToBand = False
             AutoSize = True
             AutoStretch = False
-            Caption = 'PPN 10% :'
+            Caption = 'PPN :'
             Color = clWhite
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
