@@ -1,0 +1,1545 @@
+unit NilaiKartuStokBBnew;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, wwDialog, wwrcdvw, Wwdatsrc, OracleData, wwdblook, Wwdbdlg,
+  wwcheckbox, wwSpeedButton, wwDBNavigator, wwclearpanel, ExtCtrls,
+  wwdbedit, StdCtrls, DBCtrls, Grids, Wwdbigrd, Wwdbgrid,
+  wwdbdatetimepicker, QuickRpt, QRCtrls, ComCtrls, Mask, Wwdbspin, Buttons,
+  Wwdotdot, Wwdbcomb, Oracle, jpeg;
+
+type
+  TNilaiKartuStokBBnewFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    LRecords: TLabel;
+    TabSheet2: TTabSheet;
+    Panel5: TPanel;
+    dsQRiwayatTransaksi: TwwDataSource;
+    GroupBox1: TGroupBox;
+    Panel3: TPanel;
+    VTglAwal: TwwDBDateTimePicker;
+    vTglAkhir: TwwDBDateTimePicker;
+    Label2: TLabel;
+    BitBtn1: TBitBtn;
+    ECari: TEdit;
+    cbOtomatis: TCheckBox;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    wwDBGrid2: TwwDBGrid;
+    Label8: TLabel;
+    RadioGroup1: TRadioGroup;
+    QLookItem: TOracleDataSet;
+    QLookItemKD_JNS_ITEM: TStringField;
+    QLookItemKD_ITEM: TStringField;
+    QLookItemNAMA_ITEM: TStringField;
+    QLookItemSAT1: TStringField;
+    QLookItemNO_PART: TStringField;
+    QLookItemKELOMPOK: TStringField;
+    QBrowse: TOracleDataSet;
+    dsQBrowse: TwwDataSource;
+    wwDBGrid1: TwwDBGrid;
+    QLookSubBagian: TOracleDataSet;
+    QLookSubBagianKODE: TStringField;
+    QLookSubBagianBAGIAN: TStringField;
+    QLookSubBagianSUB_BAGIAN: TStringField;
+    QLookSubBagianID_BAG: TStringField;
+    QLookSubBagianID_SUB_BAG: TStringField;
+    Label14: TLabel;
+    vRecord: TwwDBSpinEdit;
+    Button1: TButton;
+    cbPreview: TCheckBox;
+    Label15: TLabel;
+    vHeight: TwwDBSpinEdit;
+    Label16: TLabel;
+    BtnExport: TBitBtn;
+    dbcField: TwwDBComboBox;
+    vOperand: TLabel;
+    LTitle: TLabel;
+    BitBtn2: TBitBtn;
+    QProses: TOracleQuery;
+    DBText1: TDBText;
+    DBText2: TDBText;
+    Label1: TLabel;
+    DBText3: TDBText;
+    Label3: TLabel;
+    Label5: TLabel;
+    DBText5: TDBText;
+    DBText6: TDBText;
+    Label6: TLabel;
+    QRiwayatTransaksi: TOracleDataSet;
+    QNilaiMasuk: TOracleDataSet;
+    QNilaiMasukKD_ITEM: TStringField;
+    QNilaiMasukNILAI_BELI: TFloatField;
+    QNilaiMasukNILAI_KOREKSI: TFloatField;
+    QNilaiAwal: TOracleDataSet;
+    QNilaiAwalKD_ITEM: TStringField;
+    QNilaiAwalNILAI_AWAL: TFloatField;
+    BitBtn3: TBitBtn;
+    QUpdate: TOracleQuery;
+    LMDProgress1: TProgressBar;
+    QUpdateMutasi: TOracleQuery;
+    BitBtn4: TBitBtn;
+    QTutupTahun: TOracleQuery;
+    QTutupTransaksi: TOracleDataSet;
+    QTutupTransaksiTUTUP: TDateTimeField;
+    wwDBDateTimePicker1: TwwDBDateTimePicker;
+    dsQTutupTransaksi: TwwDataSource;
+    Label7: TLabel;
+    BitBtn6: TBitBtn;
+    QTotal: TOracleDataSet;
+    QTotalHARGA_PO: TFloatField;
+    QTotalHARGA_NOTA: TFloatField;
+    QJurnal: TOracleQuery;
+    cbStok: TCheckBox;
+    RadioGroup2: TRadioGroup;
+    QBrowseKD_ITEM: TStringField;
+    QBrowseNAMA_ITEM: TStringField;
+    QBrowseSATUAN: TStringField;
+    QBrowseQTY_AWAL: TFloatField;
+    QBrowseHRG_AWAL: TFloatField;
+    QBrowseVAL_AWAL: TFloatField;
+    QBrowseIN_QTY: TFloatField;
+    QBrowseIN_VAL: TFloatField;
+    QBrowseOUT_QTY: TFloatField;
+    QBrowseOUT_VAL: TFloatField;
+    QBrowseSALDO_QTY: TFloatField;
+    QBrowseHRG_RATA2: TFloatField;
+    QBrowseSALDO_VAL: TFloatField;
+    QBrowseKD_JNS_ITEM: TStringField;
+    QRiwayatTransaksiTANGGAL: TDateTimeField;
+    QRiwayatTransaksiKD_ITEM: TStringField;
+    QRiwayatTransaksiNO_NOTA: TStringField;
+    QRiwayatTransaksiIN_QTY: TFloatField;
+    QRiwayatTransaksiIN_HRG: TFloatField;
+    QRiwayatTransaksiIN_VAL: TFloatField;
+    QRiwayatTransaksiOUT_QTY: TFloatField;
+    QRiwayatTransaksiOUT_HRG: TFloatField;
+    QRiwayatTransaksiOUT_VAL: TFloatField;
+    QRiwayatTransaksiSALDO_QTY: TFloatField;
+    QRiwayatTransaksiSALDO_VAL: TFloatField;
+    QRiwayatTransaksiHRG_RATA2: TFloatField;
+    QRiwayatTransaksiANTRIAN: TFloatField;
+    QRiwayatTransaksiKD_JNS_ITEM: TStringField;
+    QRiwayatTransaksiSATUAN: TStringField;
+    QRiwayatTransaksiNAMA_ITEM: TStringField;
+    QRiwayatTransaksiOPR_INSERT: TStringField;
+    QRiwayatTransaksiTGL_INSERT: TDateTimeField;
+    DBText4: TDBText;
+    Label4: TLabel;
+    Label9: TLabel;
+    DBText7: TDBText;
+    DBText8: TDBText;
+    Label10: TLabel;
+    Label11: TLabel;
+    DBText9: TDBText;
+    QRiwayatTransaksiBB_QTY_OUT_SP1: TFloatField;
+    QRiwayatTransaksiBB_QTY_OUT_SP2: TFloatField;
+    QRiwayatTransaksiBB_QTY_OUT_SP3: TFloatField;
+    QRiwayatTransaksiBB_QTY_OUT_OTR: TFloatField;
+    QRiwayatTransaksiBB_VAL_OUT_SP1: TFloatField;
+    QRiwayatTransaksiBB_VAL_OUT_SP2: TFloatField;
+    QRiwayatTransaksiBB_VAL_OUT_SP3: TFloatField;
+    QRiwayatTransaksiBB_VAL_OUT_OTR: TFloatField;
+    QuickRep1: TQuickRep;
+    QRBand2: TQRBand;
+    QRBand3: TQRBand;
+    QRDBText4: TQRDBText;
+    QRLabel3: TQRLabel;
+    QRLPeriode: TQRLabel;
+    QRBand4: TQRBand;
+    QRLabel8: TQRLabel;
+    QRLabel18: TQRLabel;
+    QRLabel19: TQRLabel;
+    QRLabel30: TQRLabel;
+    QRShape11: TQRShape;
+    QRShape12: TQRShape;
+    QRShape13: TQRShape;
+    QRShape19: TQRShape;
+    QRShape20: TQRShape;
+    QRShape21: TQRShape;
+    QRBand6: TQRBand;
+    QRShape22: TQRShape;
+    QRShape23: TQRShape;
+    QRShape24: TQRShape;
+    QRShape25: TQRShape;
+    QRShape26: TQRShape;
+    QRShape27: TQRShape;
+    QRExpr16: TQRExpr;
+    QRLabel33: TQRLabel;
+    QRBand7: TQRBand;
+    QRSysData6: TQRSysData;
+    QRDBText31: TQRDBText;
+    QRShape7: TQRShape;
+    QRShape8: TQRShape;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel5: TQRLabel;
+    QRBand5: TQRBand;
+    QRSysData5: TQRSysData;
+    QRDBText8: TQRDBText;
+    QRDBText9: TQRDBText;
+    QRDBText21: TQRDBText;
+    QRDBText24: TQRDBText;
+    QRDBText25: TQRDBText;
+    QRShape1: TQRShape;
+    QRShape2: TQRShape;
+    QRShape3: TQRShape;
+    QRShape4: TQRShape;
+    QRShape5: TQRShape;
+    QRShape6: TQRShape;
+    QRShape9: TQRShape;
+    QRShape10: TQRShape;
+    QRExpr1: TQRExpr;
+    QRLabel6: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRShape17: TQRShape;
+    QRLabel20: TQRLabel;
+    QRShape15: TQRShape;
+    QRShape14: TQRShape;
+    QRLabel22: TQRLabel;
+    QRLabel21: TQRLabel;
+    QRLabel23: TQRLabel;
+    QRShape16: TQRShape;
+    QRShape28: TQRShape;
+    QRLabel29: TQRLabel;
+    QRLabel31: TQRLabel;
+    QRLabel32: TQRLabel;
+    QRLabel34: TQRLabel;
+    QRDBText1: TQRDBText;
+    QRShape29: TQRShape;
+    QRShape30: TQRShape;
+    QRShape31: TQRShape;
+    QRShape32: TQRShape;
+    QRDBText2: TQRDBText;
+    QRDBText3: TQRDBText;
+    QRDBText5: TQRDBText;
+    QRDBText6: TQRDBText;
+    QRDBText7: TQRDBText;
+    QRDBText10: TQRDBText;
+    QRShape33: TQRShape;
+    QRShape34: TQRShape;
+    QRShape35: TQRShape;
+    QRShape36: TQRShape;
+    QRExpr2: TQRExpr;
+    QRExpr3: TQRExpr;
+    QRExpr4: TQRExpr;
+    QRExpr5: TQRExpr;
+    QRExpr6: TQRExpr;
+    QRExpr7: TQRExpr;
+    QRLabel7: TQRLabel;
+    QRImage2: TQRImage;
+    PageControl2: TPageControl;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    wwDBGrid3: TwwDBGrid;
+    QBrowse2: TOracleDataSet;
+    dsQBrowse2: TwwDataSource;
+    QBrowse2KD_ITEM: TStringField;
+    QBrowse2NAMA_ITEM: TStringField;
+    QBrowse2QTY_SP1: TFloatField;
+    QBrowse2VAL_SP1: TFloatField;
+    QBrowse2QTY_SP2: TFloatField;
+    QBrowse2VAL_SP2: TFloatField;
+    QBrowse2QTY_SP3: TFloatField;
+    QBrowse2VAL_SP3: TFloatField;
+    QBrowse2QTY_OTR: TFloatField;
+    QBrowse2VAL_OTR: TFloatField;
+    QRGroup2: TQRGroup;
+    QuickRep2: TQuickRep;
+    PageHeaderBand2: TQRBand;
+    QRDBText13: TQRDBText;
+    QRDBText43: TQRDBText;
+    QRLabel28: TQRLabel;
+    ColumnHeaderBand2: TQRBand;
+    QRShape53: TQRShape;
+    QRLabel11: TQRLabel;
+    QRLabel12: TQRLabel;
+    QRLabel13: TQRLabel;
+    QRLabel16: TQRLabel;
+    QRLabel37: TQRLabel;
+    QRLabel38: TQRLabel;
+    QRLabel39: TQRLabel;
+    QRLabel4: TQRLabel;
+    QRLabel14: TQRLabel;
+    QRLabel15: TQRLabel;
+    QRLabel17: TQRLabel;
+    QRLabel35: TQRLabel;
+    QRLabel36: TQRLabel;
+    QRLabel40: TQRLabel;
+    QRLabel41: TQRLabel;
+    QRLabel42: TQRLabel;
+    QRShape51: TQRShape;
+    QRShape52: TQRShape;
+    QRShape54: TQRShape;
+    QRShape55: TQRShape;
+    QRShape56: TQRShape;
+    QRShape57: TQRShape;
+    QRShape58: TQRShape;
+    QRShape59: TQRShape;
+    QRShape60: TQRShape;
+    QRShape62: TQRShape;
+    QRShape63: TQRShape;
+    QRShape64: TQRShape;
+    QRShape65: TQRShape;
+    QRShape45: TQRShape;
+    QRShape46: TQRShape;
+    QRLabel43: TQRLabel;
+    QRShape66: TQRShape;
+    QRLabel44: TQRLabel;
+    QRLabel45: TQRLabel;
+    QRLabel46: TQRLabel;
+    QRLabel47: TQRLabel;
+    QRLabel48: TQRLabel;
+    QRLabel49: TQRLabel;
+    QRLabel50: TQRLabel;
+    QRShape67: TQRShape;
+    QRShape68: TQRShape;
+    QRShape69: TQRShape;
+    QRShape70: TQRShape;
+    TitleBand2: TQRBand;
+    QRDBText14: TQRDBText;
+    QRLTitle2: TQRLabel;
+    QRDBText26: TQRDBText;
+    QRDBText27: TQRDBText;
+    QRLabel25: TQRLabel;
+    QRLabel26: TQRLabel;
+    QRDBText16: TQRDBText;
+    QRLabel27: TQRLabel;
+    QRLabel51: TQRLabel;
+    QRLabel52: TQRLabel;
+    QRLabel53: TQRLabel;
+    QRLabel54: TQRLabel;
+    QRLabel55: TQRLabel;
+    QRDBText41: TQRDBText;
+    QRImage1: TQRImage;
+    DetailBand2: TQRBand;
+    QRDBText17: TQRDBText;
+    QRSysData3: TQRSysData;
+    QRDBText23: TQRDBText;
+    QRDBText12: TQRDBText;
+    QRDBText11: TQRDBText;
+    QRDBText15: TQRDBText;
+    QRDBText19: TQRDBText;
+    QRDBText22: TQRDBText;
+    QRDBText30: TQRDBText;
+    QRDBText32: TQRDBText;
+    QRDBText33: TQRDBText;
+    QRDBText34: TQRDBText;
+    QRDBText35: TQRDBText;
+    QRDBText36: TQRDBText;
+    QRShape18: TQRShape;
+    QRShape37: TQRShape;
+    QRShape38: TQRShape;
+    QRShape39: TQRShape;
+    QRShape40: TQRShape;
+    QRShape41: TQRShape;
+    QRShape42: TQRShape;
+    QRShape43: TQRShape;
+    QRShape44: TQRShape;
+    QRShape47: TQRShape;
+    QRShape48: TQRShape;
+    QRShape49: TQRShape;
+    QRShape50: TQRShape;
+    QRShape61: TQRShape;
+    QRDBText18: TQRDBText;
+    QRDBText20: TQRDBText;
+    QRDBText37: TQRDBText;
+    QRDBText38: TQRDBText;
+    QRDBText39: TQRDBText;
+    QRDBText40: TQRDBText;
+    QRShape71: TQRShape;
+    QRShape72: TQRShape;
+    QRShape73: TQRShape;
+    QRShape74: TQRShape;
+    QRShape75: TQRShape;
+    SummaryBand1: TQRBand;
+    QRLabel24: TQRLabel;
+    QRShape77: TQRShape;
+    QRShape78: TQRShape;
+    QRShape79: TQRShape;
+    QRShape80: TQRShape;
+    QRShape81: TQRShape;
+    QRShape82: TQRShape;
+    QRShape83: TQRShape;
+    QRShape84: TQRShape;
+    QRShape85: TQRShape;
+    QRShape86: TQRShape;
+    QRShape87: TQRShape;
+    QRShape88: TQRShape;
+    QRShape89: TQRShape;
+    QRShape90: TQRShape;
+    QRShape91: TQRShape;
+    QRShape92: TQRShape;
+    QRShape93: TQRShape;
+    QRExpr8: TQRExpr;
+    QRExpr9: TQRExpr;
+    QRExpr10: TQRExpr;
+    QRExpr11: TQRExpr;
+    QRExpr12: TQRExpr;
+    QRExpr13: TQRExpr;
+    QRExpr14: TQRExpr;
+    QRExpr15: TQRExpr;
+    QRExpr17: TQRExpr;
+    QRExpr18: TQRExpr;
+    QRExpr19: TQRExpr;
+    QRExpr20: TQRExpr;
+    QRExpr21: TQRExpr;
+    QRExpr22: TQRExpr;
+    QuickRep3: TQuickRep;
+    QRBand1: TQRBand;
+    QRBand8: TQRBand;
+    QRDBText28: TQRDBText;
+    QRLabel10: TQRLabel;
+    QRLabel56: TQRLabel;
+    QRLabel57: TQRLabel;
+    QRImage3: TQRImage;
+    QRBand9: TQRBand;
+    QRLabel58: TQRLabel;
+    QRLabel59: TQRLabel;
+    QRLabel60: TQRLabel;
+    QRLabel61: TQRLabel;
+    QRShape76: TQRShape;
+    QRShape94: TQRShape;
+    QRShape95: TQRShape;
+    QRShape96: TQRShape;
+    QRShape97: TQRShape;
+    QRShape98: TQRShape;
+    QRShape99: TQRShape;
+    QRLabel62: TQRLabel;
+    QRLabel63: TQRLabel;
+    QRLabel65: TQRLabel;
+    QRLabel66: TQRLabel;
+    QRShape101: TQRShape;
+    QRLabel67: TQRLabel;
+    QRShape102: TQRShape;
+    QRShape103: TQRShape;
+    QRLabel68: TQRLabel;
+    QRLabel69: TQRLabel;
+    QRLabel70: TQRLabel;
+    QRShape105: TQRShape;
+    QRLabel71: TQRLabel;
+    QRLabel73: TQRLabel;
+    QRLabel74: TQRLabel;
+    QRBand10: TQRBand;
+    QRShape107: TQRShape;
+    QRShape108: TQRShape;
+    QRShape109: TQRShape;
+    QRShape110: TQRShape;
+    QRShape111: TQRShape;
+    QRExpr23: TQRExpr;
+    QRLabel75: TQRLabel;
+    QRShape113: TQRShape;
+    QRShape114: TQRShape;
+    QRShape115: TQRShape;
+    QRExpr25: TQRExpr;
+    QRExpr26: TQRExpr;
+    QRExpr27: TQRExpr;
+    QRExpr28: TQRExpr;
+    QRExpr29: TQRExpr;
+    QRExpr30: TQRExpr;
+    QRBand11: TQRBand;
+    QRSysData1: TQRSysData;
+    QRDBText29: TQRDBText;
+    QRBand12: TQRBand;
+    QRSysData2: TQRSysData;
+    QRDBText42: TQRDBText;
+    QRDBText44: TQRDBText;
+    QRDBText46: TQRDBText;
+    QRShape117: TQRShape;
+    QRShape119: TQRShape;
+    QRShape121: TQRShape;
+    QRShape122: TQRShape;
+    QRShape123: TQRShape;
+    QRDBText48: TQRDBText;
+    QRShape125: TQRShape;
+    QRShape126: TQRShape;
+    QRShape127: TQRShape;
+    QRDBText49: TQRDBText;
+    QRDBText50: TQRDBText;
+    QRDBText51: TQRDBText;
+    QRDBText53: TQRDBText;
+    QRDBText54: TQRDBText;
+    QRGroup1: TQRGroup;
+    QRShape100: TQRShape;
+    QRShape104: TQRShape;
+    QRDBText45: TQRDBText;
+    QRExpr24: TQRExpr;
+    TabSheet5: TTabSheet;
+    wwDBGrid4: TwwDBGrid;
+    dsQBrowse3: TwwDataSource;
+    QBrowse3: TOracleDataSet;
+    QBrowse3KD_ITEM: TStringField;
+    QBrowse3NAMA_ITEM: TStringField;
+    QBrowse3SATUAN: TStringField;
+    QBrowse3QTY_AWAL: TFloatField;
+    QBrowse3HRG_AWAL: TFloatField;
+    QBrowse3VAL_AWAL: TFloatField;
+    QBrowse3IN_QTY: TFloatField;
+    QBrowse3IN_VAL: TFloatField;
+    QBrowse3OUT_QTY: TFloatField;
+    QBrowse3OUT_VAL: TFloatField;
+    QBrowse3SALDO_QTY: TFloatField;
+    QBrowse3HRG_RATA2: TFloatField;
+    QBrowse3SALDO_VAL: TFloatField;
+    QBrowse3KD_JNS_ITEM: TStringField;
+    QBrowseSALDO_QTY_BISFA: TFloatField;
+    QBrowseSALDO_VAL_BISFA: TFloatField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure wwDBGrid1TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure LookKonstruksiEnter(Sender: TObject);
+    procedure TabSheet2Show(Sender: TObject);
+    procedure QLookItemBeforeOpen(DataSet: TDataSet);
+    procedure wwDBGrid1DblClick(Sender: TObject);
+    procedure ECariChange(Sender: TObject);
+    procedure cbOtomatisClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure QBrowseBeforeOpen(DataSet: TDataSet);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure QLookSubBagianBeforeOpen(DataSet: TDataSet);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure QBrowseAfterScroll(DataSet: TDataSet);
+    procedure DetailBand2BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure VTglAwalChange(Sender: TObject);
+    procedure vTglAkhirChange(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure ColumnHeaderBand2BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure vHeightAfterUpClick(Sender: TObject);
+    procedure BtnExportClick(Sender: TObject);
+    procedure DBText5Click(Sender: TObject);
+    procedure vOperandClick(Sender: TObject);
+    procedure dbcFieldEnter(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure TitleBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure TitleBand2BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QBrowseCalcFields(DataSet: TDataSet);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure Label7Click(Sender: TObject);
+    procedure QNilaiAwalBeforeOpen(DataSet: TDataSet);
+    procedure QNilaiMasukBeforeOpen(DataSet: TDataSet);
+    procedure wwDBGrid2DblClick(Sender: TObject);
+    procedure wwDBGrid2UpdateFooter(Sender: TObject);
+    procedure QRiwayatTransaksiCalcFields(DataSet: TDataSet);
+    procedure cbStokClick(Sender: TObject);
+    procedure QBrowseFilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure QTutupTransaksiBeforeOpen(DataSet: TDataSet);
+    procedure wwDBGrid3DblClick(Sender: TObject);
+    procedure TabSheet4Show(Sender: TObject);
+    procedure QBrowse2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure QRBand8BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QBrowse3BeforeOpen(DataSet: TDataSet);
+    procedure QBrowse3FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+  private
+    { Private declarations }
+    vfilter, vorder, vfilter2 : String;
+    vakhir:real;
+    xawal, xakhir : tdate;
+  t1,
+  t2,
+  t3,
+  t4,
+  t5,
+  t6,t7,t8 : real;
+
+
+
+  public
+    { Public declarations }
+    vkd_jns_item, vkd_bag : String;
+    vhak_input : Boolean;
+    vrecord_ke : Integer;
+    vberjalan : real;
+
+  end;
+
+var
+  NilaiKartuStokBBnewFrm: TNilaiKartuStokBBnewFrm;
+
+implementation
+
+uses DM, MainBrowse, Main, Menus, XPROCS, DateUtils, Keterangan, Sisdur,
+  NilaiKartuStokBB;
+
+{$R *.dfm}
+
+procedure TNilaiKartuStokBBnewFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  NilaiKartuStokBBnewFrm:=Nil;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.FormCreate(Sender: TObject);
+begin
+  DMFrm.QLookSubBagian.Close;
+  QLookItem.Close;
+  //TabSheet5.TabVisible:=False;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid1TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.LookKonstruksiEnter(Sender: TObject);
+begin
+  DMFrm.QKonstruksi.Open;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.TabSheet2Show(Sender: TObject);
+var
+   v1, v2, v3, v4,
+   q1, q2, q3, q4,
+   vv1, vv2, vv3, vv4
+    : REAL;
+begin
+  wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+//  BtnExport.Enabled:=False;
+  QRiwayatTransaksi.DisableControls;
+  QRiwayatTransaksi.Close;
+  QRiwayatTransaksi.SetVariable('kd_item',QBrowseKD_ITEM.AsString);
+  QRiwayatTransaksi.SetVariable('pawal',trunc(VTglAwal.Date));
+  QRiwayatTransaksi.SetVariable('pakhir',trunc(VTglAkhir.Date)+1-1/86400);
+  QRiwayatTransaksi.Open;
+  v1:=0;
+  v2:=0;
+  v3:=0;
+  v4:=0;
+
+  q1:=0;
+  q2:=0;
+  q3:=0;
+  q4:=0;
+
+  vv1:=0;
+  vv2:=0;
+  vv3:=0;
+  vv4:=0;
+  while not QRiwayatTransaksi.Eof do
+  begin
+      v1:=v1+QRiwayatTransaksiIN_QTY.AsFloat;
+      v2:=v2+QRiwayatTransaksiIN_VAL.AsFloat;
+      v3:=v3+QRiwayatTransaksiOUT_QTY.AsFloat;
+      v4:=v4+QRiwayatTransaksiOUT_VAL.AsFloat;
+
+      q1:=q1+QRiwayatTransaksiBB_QTY_OUT_SP1.AsFloat;
+      q2:=q2+QRiwayatTransaksiBB_QTY_OUT_SP2.AsFloat;
+      q3:=q3+QRiwayatTransaksiBB_QTY_OUT_SP3.AsFloat;
+      q4:=q4+QRiwayatTransaksiBB_QTY_OUT_OTR.AsFloat;
+
+      vv1:=vv1+QRiwayatTransaksiBB_VAL_OUT_SP1.AsFloat;
+      vv2:=vv2+QRiwayatTransaksiBB_VAL_OUT_SP2.AsFloat;
+      vv3:=vv3+QRiwayatTransaksiBB_VAL_OUT_SP3.AsFloat;
+      vv4:=vv4+QRiwayatTransaksiBB_VAL_OUT_OTR.AsFloat;
+
+      QRiwayatTransaksi.Next;
+  end;
+  QRiwayatTransaksi.EnableControls;
+  wwDBGrid2.ColumnByName('IN_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v1);
+  wwDBGrid2.ColumnByName('IN_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v2);
+  wwDBGrid2.ColumnByName('OUT_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v3);
+  wwDBGrid2.ColumnByName('OUT_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v4);
+
+  wwDBGrid2.ColumnByName('BB_QTY_OUT_SP1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q1);
+  wwDBGrid2.ColumnByName('BB_QTY_OUT_SP2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q2);
+  wwDBGrid2.ColumnByName('BB_QTY_OUT_SP3').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q3);
+  wwDBGrid2.ColumnByName('BB_QTY_OUT_OTR').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q4);
+
+  wwDBGrid2.ColumnByName('BB_VAL_OUT_SP1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',vv1);
+  wwDBGrid2.ColumnByName('BB_VAL_OUT_SP2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',vv2);
+  wwDBGrid2.ColumnByName('BB_VAL_OUT_SP3').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',vv3);
+  wwDBGrid2.ColumnByName('BB_VAL_OUT_OTR').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',vv4);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QLookItemBeforeOpen(DataSet: TDataSet);
+begin
+  QLookItem.SetVariable('kd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid1DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.ECariChange(Sender: TObject);
+begin
+  if cbOtomatis.Checked then
+  begin
+      QBrowse.SearchRecord(wwDBGrid1.Columns[0].FieldName,ECari.Text,[srFromBeginning, srPartialMatch, srIgnoreCase]);
+  end;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.cbOtomatisClick(Sender: TObject);
+begin
+  if cbOtomatis.Checked then
+  begin
+    ShowMessage('Mencari data pada kolom paling kiri.'+#13+'Urutkan data terlebih dahulu supaya mudah mencari !');
+    wwDBGrid1.Options:=wwDBGrid1.Options+[dgAlwaysShowSelection];
+  end
+    else
+    wwDBGrid1.Options:=wwDBGrid1.Options-[dgAlwaysShowSelection];
+  ECari.SetFocus;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn1Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+  x : Integer;
+  w1, w2, w3, w4, w5, w6, w7, w8 : REAL;
+begin
+  vpertama:=True;
+  vfilter:=' where (';
+  if (QBrowse.FieldCount>=1) then
+  begin
+    if dbcField.ItemIndex=0 then
+    begin
+      for i:=0 to wwDBGrid1.Selected.Count-1 do
+      begin
+        if (QBrowse.FieldByName(wwDBGrid1.Columns[i].FieldName).FieldKind=fkData) and (UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL') then
+        begin
+          if vpertama then
+            begin
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                   vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand.Caption='LIKE' then
+         vfilter:=vfilter+dbcField.Text+' like ''%'+ECari.Text+'%'''
+      else
+         vfilter:=vfilter+dbcField.Text+' = '''+ECari.Text+'''';
+         vfilter:=vfilter+')';
+        if QBrowse.Active then
+          vorder:=' order by '+wwDBGrid1.Columns[0].FieldName
+        else
+          vorder:=' order by kelompok, nama_item';
+      end;
+  QBrowse.DisableControls;
+  QBrowse.Close;
+  QBrowse.SetVariable('myparam',vfilter+vorder);
+  QBrowse.Open;
+  vakhir:=0;
+
+  w1:=0;
+  w2:=0;
+  w3:=0;
+  w4:=0;
+  w5:=0;
+  w6:=0;
+  w7:=0;
+  w8:=0;
+
+  QBrowse.Open;
+
+  x:=0;
+  while not QBrowse.Eof do
+  begin
+    inc(x);
+      w1:=w1+QBrowseQTY_AWAL.AsFloat;
+      w2:=w2+QBrowseVAL_AWAL.AsFloat;
+      w3:=w3+QBrowseIN_QTY.AsFloat;
+      w4:=w4+QBrowseIN_VAL.AsFloat;
+      w5:=w5+QBrowseOUT_QTY.AsFloat;
+      w6:=w6+QBrowseOUT_VAL.AsFloat;
+      w7:=w7+QBrowseSALDO_QTY.AsFloat;
+      w8:=w8+QBrowseSALDO_VAL.AsFloat;
+      QBrowse.Next;
+  end;
+
+  QBrowse.EnableControls;
+
+  wwDBGrid1.ColumnByName('QTY_AWAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w1);
+  wwDBGrid1.ColumnByName('VAL_AWAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w2);
+  wwDBGrid1.ColumnByName('IN_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w3);
+  wwDBGrid1.ColumnByName('IN_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w4);
+  wwDBGrid1.ColumnByName('OUT_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w5);
+  wwDBGrid1.ColumnByName('OUT_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w6);
+  wwDBGrid1.ColumnByName('SALDO_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w7);
+  wwDBGrid1.ColumnByName('SALDO_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w8);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal.Date:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+  vfilter:='';
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowseBeforeOpen(DataSet: TDataSet);
+begin
+  QBrowse.SetVariable('kd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn5Click(Sender: TObject);
+begin
+
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        {QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;}
+
+        case PageControl2.ActivePageIndex of
+        0 : begin
+              QBrowse.DisableControls;
+              QuickRep1.Preview;
+              QBrowse.EnableControls;
+            end;
+        1 : begin
+              QBrowse2.DisableControls;
+              QuickRep3.Preview;
+              QBrowse2.EnableControls;
+            end;
+        end;
+
+
+      end;
+  1 : begin
+        DMFrm.QLookSubBagian.Open;
+        QuickRep2.Page.Units:=Inches;
+        case RadioGroup1.ItemIndex of
+        0 : begin
+              QuickRep2.Page.Length:=11.67;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        1 : begin
+              QuickRep2.Page.Length:=5.50;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        end;
+        if cbPreview.Checked then
+           QuickRep2.Preview
+           else
+             QuickRep2.Print;
+      end;
+  end;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QLookSubBagianBeforeOpen(DataSet: TDataSet);
+begin
+  QLookSubBagian.SetVariable('kd_bag',vkd_bag);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.TabSheet1Show(Sender: TObject);
+begin
+  if ((upperCase(DMFrm.OSUser.LogonUsername)='ARIF') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='AZMI') or  
+  (upperCase(DMFrm.OSUser.LogonUsername)='SALAM') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='ADMIN') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='ASTRI') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='JUMHAN')) then
+  begin
+    BitBtn3.Enabled:=True;
+    BitBtn4.Enabled:=True;
+  end
+  else
+  begin
+    BitBtn3.Enabled:=False;
+    BitBtn4.Enabled:=False;
+  end;
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  QBrowse.Open;
+  QTutupTransaksi.SetVariable('pjns_item',vkd_jns_item);
+  QTutupTransaksi.Open;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TNilaiKartuStokBBnewFrm.DetailBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  inc(vrecord_ke);
+  DetailBand2.ForceNewPage:=(vrecord_ke>Round(vRecord.Value)-1);
+ // vberjalan:=vberjalan+QRiwayatTransaksiQTY_IN.AsFloat-QRiwayatTransaksiQTY_OUT.AsFloat;
+ // QRLBerjalan.Caption:=FormatFloat('#.#,#;(#.#,#)',vberjalan);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.VTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.Date:=Trunc(EndOfTheMonth(VTglAwal.Date));
+end;
+
+procedure TNilaiKartuStokBBnewFrm.vTglAkhirChange(Sender: TObject);
+begin
+  if VTglAwal.Date>vTglAkhir.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir.Date:=VTglAwal.Date;
+  end;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.RadioGroup1Click(Sender: TObject);
+begin
+  case RadioGroup1.ItemIndex of
+  0 : vRecord.Value:=40;
+  1 : vRecord.Value:=20;
+  end;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.ColumnHeaderBand2BeforePrint(
+  Sender: TQRCustomBand; var PrintBand: Boolean);
+begin
+  vrecord_ke:=0;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  1 : wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BtnExportClick(Sender: TObject);
+begin
+ case PageControl1.TabIndex of
+ 0: begin
+    case PageControl2.TabIndex of
+    0: begin
+       if QBrowse.Active then
+       begin
+         DMFrm.SaveDialog1.DefaultExt:='XLK';
+         DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+         DMFrm.SaveDialog1.FileName:=LTitle.Caption;
+         wwDBGrid1.ExportOptions.TitleName:=LTitle.Caption;
+         if DMFrm.SaveDialog1.Execute then
+         begin
+           try
+             wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+             wwDBGrid1.ExportOptions.Save;
+             ShowMessage('Simpan Sukses !');
+           except
+             ShowMessage('Simpan Gagal !');
+           end;
+         end;
+       end
+       else
+        ShowMessage('Tabel belum di-OPEN !');
+       end;
+    1: begin
+       if QBrowse2.Active then
+       begin
+         DMFrm.SaveDialog1.DefaultExt:='XLK';
+         DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+         DMFrm.SaveDialog1.FileName:='Pemakaian Bahan Baku Per Spinning';
+         wwDBGrid3.ExportOptions.TitleName:=LTitle.Caption;
+         if DMFrm.SaveDialog1.Execute then
+         begin
+           try
+             wwDBGrid3.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+             wwDBGrid3.ExportOptions.Save;
+             ShowMessage('Simpan Sukses !');
+           except
+             ShowMessage('Simpan Gagal !');
+           end;
+         end;
+       end
+       else
+        ShowMessage('Tabel belum di-OPEN !');
+       end;
+    end;
+ end;
+ 1: begin
+    if QRiwayatTransaksi.Active then
+    begin
+      DMFrm.SaveDialog1.DefaultExt:='XLK';
+      DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+      DMFrm.SaveDialog1.FileName:='Riwayat Transaksi Bahan Baku';
+      wwDBGrid2.ExportOptions.TitleName:=LTitle.Caption;
+      if DMFrm.SaveDialog1.Execute then
+      begin
+        try
+          wwDBGrid2.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+          wwDBGrid2.ExportOptions.Save;
+          ShowMessage('Simpan Sukses !');
+        except
+          ShowMessage('Simpan Gagal !');
+        end;
+      end;
+    end
+    else
+     ShowMessage('Tabel belum di-OPEN !');
+    end;
+ end;
+
+    { case RadioGroup2.ItemIndex of
+ 0 : begin
+     if pagecontrol1.TabIndex=0 then
+        ShowMessage('Salah Memilih Riwayat yang akan di-Export')
+     else
+        if {QBrowse.Active} {pagecontrol2.TabIndex=0  then
+           begin
+             DMFrm.SaveDialog1.DefaultExt:='XLK';
+             DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+             DMFrm.SaveDialog1.FileName:=LTitle.Caption;
+             wwDBGrid1.ExportOptions.TitleName:=LTitle.Caption;
+             if (DMFrm.SaveDialog1.Execute)then
+                begin
+                  try
+                    wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+                    wwDBGrid1.ExportOptions.Save;
+                    wwDBGrid1.BringToFront;
+                    ShowMessage('Simpan Sukses !');
+                  except
+                     ShowMessage('Simpan Gagal!!');
+                end;
+             end;
+           end
+        else if pagecontrol2.TabIndex=1 then
+             DMFrm.SaveDialog1.DefaultExt:='XLK';
+             DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+             DMFrm.SaveDialog1.FileName:=LTitle.Caption;
+             wwDBGrid3.ExportOptions.TitleName:=LTitle.Caption;
+             if (DMFrm.SaveDialog1.Execute)then
+                begin
+                  try
+                    wwDBGrid3.ExportOptions.FileName:='Pemakaian Bahan Baku Per Spinning';
+                    wwDBGrid3.ExportOptions.Save;
+                    wwDBGrid3.BringToFront;
+                    ShowMessage('Simpan Sukses !');
+                  except
+                     ShowMessage('Simpan Gagal!!');
+                end;
+             end
+        else
+          ShowMessage('Tabel belum di-OPEN !');
+        end;
+ 1 : begin
+     if pagecontrol1.TabIndex=1 then
+        ShowMessage('Salah Memilih Daftar yang akan di-Export')
+     else
+        if QRiwayatTransaksi.Active then
+        begin
+          DMFrm.SaveDialog1.DefaultExt:='XLK';
+          DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+          DMFrm.SaveDialog1.FileName:=LTitle.Caption;
+          wwDBGrid2.ExportOptions.TitleName:=LTitle.Caption;
+          if (DMFrm.SaveDialog1.Execute)  then
+             begin
+               try
+                 wwDBGrid2.ExportOptions.FileName:='Riwayat Transaksi Bahan Baku';
+                 wwDBGrid2.ExportOptions.Save;
+                 ShowMessage('Simpan Sukses !');
+                 wwDBGrid2.BringToFront;
+               except
+                 ShowMessage('Simpan Gagal!!');
+             end;
+          end;
+        end
+        else
+          ShowMessage('Tabel belum di-OPEN !');
+     end;
+ end;}
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=LTitle.Caption;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.vOperandClick(Sender: TObject);
+begin
+  if vOperand.Caption='LIKE' then
+    vOperand.Caption:='='
+    else
+      vOperand.Caption:='LIKE';
+end;
+
+procedure TNilaiKartuStokBBnewFrm.dbcFieldEnter(Sender: TObject);
+var
+  i : Word;
+begin
+  if (QBrowse.Active) and (dbcField.Items.Count=1) then
+  for i:=0 to wwDBGrid1.FieldCount-1 do
+    if UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL' then
+      dbcField.Items.Add(wwDBGrid1.Columns[i].FieldName);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn2Click(Sender: TObject);
+var
+  vmybulan : string;
+  i,x : Integer;
+  w1, w2, w3, w4, w5, w6, w7, w8 : REAL;
+  v1, v2, v3, v4, v5, v6, v7, v8 : REAL;
+
+begin
+  QBrowse.DisableControls;
+  QBrowse.Close;
+
+  QProses.Close;
+  QProses.SetVariable('kd_jns_item',vkd_jns_item);
+  QProses.SetVariable('pawal',VTglAwal.Date);
+  QProses.SetVariable('pakhir',vTglAkhir.Date);
+  QProses.Execute;
+
+
+  w1:=0; w2:=0; w3:=0; w4:=0; w5:=0; w6:=0; w7:=0; w8:=0;
+
+  QBrowse.Open;
+  i:=0;
+  LMDProgress1.Max:=QBrowse.RecordCount;
+  LMDProgress1.Position:=i;
+
+  while not QBrowse.Eof do
+  begin
+    inc(i);
+    LMDProgress1.Position:=i;
+
+      w1:=w1+QBrowseQTY_AWAL.AsFloat;
+      w2:=w2+QBrowseVAL_AWAL.AsFloat;
+      w3:=w3+QBrowseIN_QTY.AsFloat;
+      w4:=w4+QBrowseIN_VAL.AsFloat;
+      w5:=w5+QBrowseOUT_QTY.AsFloat;
+      w6:=w6+QBrowseOUT_VAL.AsFloat;
+      w7:=w7+QBrowseSALDO_QTY.AsFloat;
+      w8:=w8+QBrowseSALDO_VAL.AsFloat;
+      QBrowse.Next;
+  end;
+
+  QBrowse.EnableControls;
+  QBrowse3.DisableControls;
+  QBrowse3.Close;
+  QBrowse3.Open;
+  QBrowse3.EnableControls;
+
+  wwDBGrid1.ColumnByName('QTY_AWAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w1);
+  wwDBGrid1.ColumnByName('VAL_AWAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w2);
+  wwDBGrid1.ColumnByName('IN_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w3);
+  wwDBGrid1.ColumnByName('IN_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w4);
+  wwDBGrid1.ColumnByName('OUT_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w5);
+  wwDBGrid1.ColumnByName('OUT_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w6);
+  wwDBGrid1.ColumnByName('SALDO_QTY').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w7);
+  wwDBGrid1.ColumnByName('SALDO_VAL').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',w8);
+  //TabSheet3.Show;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+//  QRLTitle.Caption:=LTitle.Caption;
+  QRLPeriode.Caption:='Periode : '+VTglAwal.Text+' s/d '+vTglAkhir.Text;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLTitle2.Caption:='RIWAYAT TRANSAKSI';
+ // vberjalan:=QBrowseAWAL.AsFloat;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowseCalcFields(DataSet: TDataSet);
+var
+  v1, v2 : real;
+begin
+{  QBrowseCQTY_AWAL.AsFloat:=QBrowseAWAL.AsFloat;
+  QBrowseCQTY_BELI.AsFloat:=QBrowsePEMBELIAN.AsFloat;
+  QBrowseCQTY_KOREKSI1.AsFloat:=QBrowseKOREKSI_IN.AsFloat;
+  QBrowseCQTY_PAKAI.AsFloat:=QBrowsePEMAKAIAN.AsFloat;
+  QBrowseCQTY_KOREKSI2.AsFloat:=QBrowseKOREKSI_OUT.AsFloat;
+  QBrowseCQty_AKHIR.AsFloat:=QBrowseAKHIR.AsFloat;
+
+  v1:=0; v2:=0;
+  if QBrowseAWAL.AsFloat>0 then
+    QBrowseAWAL_AVG.AsFloat:=QBrowseNILAI_AWAL.AsFloat/QBrowseAWAL.AsFloat;
+  if QBrowseCQty_Beli.AsFloat<>0 then
+    v1:=QBrowseNILAI_BELI.AsFloat;
+  if QBrowseCQty_Koreksi1.AsFloat<>0 then
+    v2:=QBrowseNILAI_KOREKSI.AsFloat;
+  QBrowseMASUK_NILAI.AsFloat:=v1+v2;
+  if (QBrowsePEMBELIAN.AsFloat+QBrowseKOREKSI_IN.AsFloat)>0 then
+    QBrowseMASUK_AVG.AsFloat:=(QBrowseNILAI_BELI.AsFloat+QBrowseNILAI_KOREKSI.AsFloat)/(QBrowsePEMBELIAN.AsFloat+QBrowseKOREKSI_IN.AsFloat);
+  IF (QBrowseAWAL.AsFloat+QBrowsePEMBELIAN.AsFloat+QBrowseKOREKSI_IN.AsFloat)>0 THEN
+    QBrowseHRG_AVG.AsFloat:=(QBrowseMASUK_NILAI.AsFloat+QBrowseNILAI_AWAL.AsFloat)/
+      (QBrowseAWAL.AsFloat+QBrowsePEMBELIAN.AsFloat+QBrowseKOREKSI_IN.AsFloat);
+ //  if QBrowseHRG_AVG.AsFloat>0 then
+     QBrowseNILAI_pakai.AsFloat:=QBrowseHRG_AVG.AsFloat*QBrowsePEMAKAIAN.AsFloat;
+ QBrowseNIL_KOREKSI_out.AsFloat:=QBrowseHRG_AVG.AsFloat*QBrowsekoreksi_out.AsFloat;
+ QBrowseNILAI_PAKAI.AsFloat:=QBrowseHRG_AVG.AsFloat*QBrowsePEMAKAIAN.AsFloat;
+  QBrowseKELUAR_NILAI.AsFloat:=QBrowseHRG_AVG.AsFloat*(QBrowsePEMAKAIAN.AsFloat+QBrowseKOREKSI_OUT.AsFloat);
+
+  QBrowseNILAI_AKHIR.AsFloat:=QBrowseNILAI_AWAL.AsFloat+QBrowseMASUK_NILAI.AsFloat-QBrowseKELUAR_NILAI.AsFloat;
+ QBrowseAWAL_AVG2.AsFloat:=QBrowseAWAL_AVG.AsFloat;
+ QBrowseMASUK_AVG2.AsFloat:=QBrowseMASUK_AVG.AsFloat;
+ QBrowseKELUAR_AVG2.AsFloat:=QBrowseHRG_AVG.AsFloat;  }
+
+ if copy(QBrowseKD_ITEM.AsString,1,3)='131' then
+ begin
+    QBrowseSALDO_QTY_BISFA.AsFloat:=QBrowseSALDO_QTY.AsFloat*1.019;
+    QBrowseSALDO_VAL_BISFA.AsFloat:=QBrowseSALDO_QTY_BISFA.AsFloat*QBrowseHRG_RATA2.AsFloat;
+ end
+ else
+ begin
+    QBrowseSALDO_QTY_BISFA.AsFloat:=0;
+    QBrowseSALDO_VAL_BISFA.AsFloat:=0;
+ end;
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn3Click(Sender: TObject);
+var
+  i : integer;
+begin
+ { i:=0;
+  LMDProgress1.Max:=QBrowse.RecordCount;
+  BitBtn3.Caption:=IntToStr(QBrowse.RecordCount)+' Records';
+  LMDProgress1.Position:=i;
+  QBrowse.DisableControls;
+  QBrowse.First;
+  while not QBrowse.Eof do
+  begin
+    inc(i);
+    LMDProgress1.Position:=i;
+    QUpdate.Close;
+    QUpdate.SetVariable('myparam','n'+FormatDateTime('mm',VTglAwal.Date));
+    QUpdate.SetVariable('myparam2','b'+FormatDateTime('mm',VTglAwal.Date));
+    QUpdate.SetVariable('myparam3','M'+FormatDateTime('mm',VTglAwal.Date));
+    QUpdate.SetVariable('myparam4','A'+FormatDateTime('mm',VTglAwal.Date));
+    QUpdate.SetVariable('pkd_item',QBrowseKD_ITEM.AsString);
+    QUpdate.SetVariable('pnilai',QBrowseNILAI_AKHIR.AsFloat);
+    QUpdate.SetVariable('pqty',QBrowseAKHIR.AsFloat);
+    QUpdate.SetVariable('pnilai2',QBrowseKELUAR_NILAI.AsFloat);
+    QUpdate.SetVariable('pqty2',QBrowsePEMAKAIAN.AsFloat+QBrowseKOREKSI_OUT.AsFloat);
+    QUpdate.SetVariable('ptahun',StrToInt(FormatDateTime('yyyy',VTglAwal.Date)));
+    QUpdate.Execute;
+    QBrowse.Next;
+  end;
+  QBrowse.First;
+  QTutupTahun.Close;
+  QTutupTahun.SetVariable('ptgl',vTglAkhir.Date);
+  QTutupTahun.Execute;
+  QBrowse.EnableControls;
+  BitBtn3.Caption:='Tutup Stok';   }
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn4Click(Sender: TObject);
+begin
+{  try
+  QUpdateMutasi.Close;
+  QUpdateMutasi.SetVariable('pbulan',vTglAkhir.Date);
+  QUpdateMutasi.SetVariable('pjns_item',vkd_jns_item);
+  QUpdateMutasi.Execute;
+  ShowMessage('Sukses !');
+  Except
+    ShowMessage('Gagal !');
+  end;             }
+end;
+
+procedure TNilaiKartuStokBBnewFrm.BitBtn6Click(Sender: TObject);
+begin
+{  QTutupTransaksi.Open;
+  if QTutupTransaksi.State<>dsBrowse then
+  begin
+    QTutupTransaksi.Post;
+  end;
+  try
+    QJurnal.Close;
+    QJurnal.SetVariable('ptgl_tutup',vTglAkhir.Date);
+    QJurnal.SetVariable('pawal',t1);
+    QJurnal.SetVariable('pbeli',t2);
+    QJurnal.SetVariable('pretur',0);
+    QJurnal.SetVariable('pjual',0);
+    QJurnal.SetVariable('pkoreksi',t3);
+    QJurnal.SetVariable('pakhir',t6);
+    QJurnal.execute;
+    ShowMessage('Jurnal Sukses !');
+  except
+    ShowMessage('Jurnal Gagal, Cek Tanggal Tutup Jurnal !');
+  end;      }
+end;
+
+procedure TNilaiKartuStokBBnewFrm.Label7Click(Sender: TObject);
+begin
+  QTutupTransaksi.Close;
+  QTutupTransaksi.SetVariable('pjns_item',vkd_jns_item);
+  QTutupTransaksi.Open;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QNilaiAwalBeforeOpen(DataSet: TDataSet);
+begin
+  QNilaiAwal.SetVariable('pkd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QNilaiMasukBeforeOpen(DataSet: TDataSet);
+begin
+  QNilaiMasuk.SetVariable('pkd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid2DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid2UpdateFooter(Sender: TObject);
+begin
+  QTotal.Close;
+  QTotal.SetVariable('kd_item',Qriwayattransaksikd_item.AsString);
+ // QTotal.SetVariable('no_reg_stok_gd',Qbrowsekd.AsInteger);
+  QTotal.Open;
+  wwDBGrid2.ColumnByName('HARGA').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalHARGA_PO.AsFloat);
+ wwDBGrid2.ColumnByName('HARGA2').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalHARGA_NOTA.AsFloat);
+ Qtotal.Refresh;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QRiwayatTransaksiCalcFields(
+  DataSet: TDataSet);
+begin
+{  QRiwayatTransaksiHARGA_AVG.AsFloat:=QBrowseHRG_AVG.AsFloat;
+  QRiwayatTransaksiQTY_IN2.AsFloat:=QRiwayatTransaksiQTY_IN.AsFloat/181.440;
+  QRiwayatTransaksiQTY_OUT2.AsFloat:=QRiwayatTransaksiQTY_OUT.AsFloat/181.440;   }
+end;
+
+procedure TNilaiKartuStokBBnewFrm.cbStokClick(Sender: TObject);
+begin
+  QBrowse.Filtered:=cbStok.Checked;
+  QBrowse3.Filtered:=cbStok.Checked;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowseFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+   Accept:=(QBrowseQTY_AWAL.AsFloat>1) or
+     (QBrowseHRG_AWAL.AsFloat>1) or
+     (QBrowseVAL_AWAL.AsFloat>1) or
+     (QBrowseIN_QTY.AsFloat>1) or
+     (QBrowseIN_VAL.AsFloat>1) or
+     (QBrowseOUT_QTY.AsFloat>1) or
+     (QBrowseOUT_VAL.AsFloat>1) or
+     (QBrowseSALDO_QTY.AsFloat>1) or
+     (QBrowseHRG_RATA2.AsFloat>1) or
+     (QBrowseSALDO_VAL.AsFloat>1);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QTutupTransaksiBeforeOpen(
+  DataSet: TDataSet);
+begin
+  QTutupTransaksi.SetVariable('pjns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.wwDBGrid3DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.TabSheet4Show(Sender: TObject);
+var
+   q1, q2, q3, q4,
+   v1, v2, v3, v4 : REAL;
+begin
+  wwDBGrid3.RowHeightPercent:=Round(vHeight.Value);
+  QBrowse2.DisableControls;
+  QBrowse2.Close;
+  QBrowse2.SetVariable('vtgl_awl',VTglAwal.Date);
+  QBrowse2.SetVariable('vtgl_ahr',vTglAkhir.Date);
+  QBrowse2.Open;
+
+  q1:=0;
+  q2:=0;
+  q3:=0;
+  q4:=0;
+
+  v1:=0;
+  v2:=0;
+  v3:=0;
+  v4:=0;
+
+  while not QBrowse2.Eof do
+  begin
+      q1:=q1+QBrowse2QTY_SP1.AsFloat;
+      q2:=q2+QBrowse2QTY_SP2.AsFloat;
+      q3:=q3+QBrowse2QTY_SP3.AsFloat;
+      q4:=q4+QBrowse2QTY_OTR.AsFloat;
+
+      v1:=v1+QBrowse2VAL_SP1.AsFloat;
+      v2:=v2+QBrowse2VAL_SP2.AsFloat;
+      v3:=v3+QBrowse2VAL_SP3.AsFloat;
+      v4:=v4+QBrowse2VAL_OTR.AsFloat;
+
+      QBrowse2.Next;
+  end;
+  QBrowse2.EnableControls;
+  wwDBGrid3.ColumnByName('QTY_SP1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q1);
+  wwDBGrid3.ColumnByName('QTY_SP2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q2);
+  wwDBGrid3.ColumnByName('QTY_SP3').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q3);
+  wwDBGrid3.ColumnByName('QTY_OTR').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',q4);
+
+  wwDBGrid3.ColumnByName('VAL_SP1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v1);
+  wwDBGrid3.ColumnByName('VAL_SP2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v2);
+  wwDBGrid3.ColumnByName('VAL_SP3').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v3);
+  wwDBGrid3.ColumnByName('VAL_OTR').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',v4);
+
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowse2FilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+   Accept:=(QBrowse2QTY_SP1.AsFloat<>0) or
+     (QBrowse2QTY_SP2.AsFloat<>0) or
+     (QBrowse2QTY_SP3.AsFloat<>0) or
+     (QBrowse2QTY_OTR.AsFloat<>0);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QRBand8BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLabel56.Caption:='Periode : '+VTglAwal.Text+' s/d '+vTglAkhir.Text;
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowse3BeforeOpen(DataSet: TDataSet);
+begin
+  QBrowse3.SetVariable('kd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokBBnewFrm.QBrowse3FilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+   Accept:=(QBrowse3QTY_AWAL.AsFloat>1) or
+     (QBrowse3HRG_AWAL.AsFloat>1) or
+     (QBrowse3VAL_AWAL.AsFloat>1) or
+     (QBrowse3IN_QTY.AsFloat>1) or
+     (QBrowse3IN_VAL.AsFloat>1) or
+     (QBrowse3OUT_QTY.AsFloat>1) or
+     (QBrowse3OUT_VAL.AsFloat>1) or
+     (QBrowse3SALDO_QTY.AsFloat>1) or
+     (QBrowse3HRG_RATA2.AsFloat>1) or
+     (QBrowse3SALDO_VAL.AsFloat>1);
+end;
+
+end.

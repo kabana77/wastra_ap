@@ -1,0 +1,133 @@
+unit Absen;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, LMDControl, LMDBaseControl,
+  LMDBaseGraphicControl, LMDGraphicControl, LMDClock, CPDrv;
+
+type
+  TAbsenOperatorFrm = class(TForm)
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    Edit1: TEdit;
+    LMDClock1: TLMDClock;
+    CommPortDriver1: TCommPortDriver;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure Edit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+    procedure CommPortDriver1ReceiveData(Sender: TObject; DataPtr: Pointer;
+      DataSize: Cardinal);
+    procedure LMDClock1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+const
+//  cserver = 'http://localhost/pismatex/absen/absen.php?filter=';
+  cserver = 'http://192.168.1.2/pismatex/pismahrd/absen.php?filter=';
+  cserver_jam_kerja = 'http://192.168.1.2/pismatex/pismahrd/JAM_KERJA.php';
+var
+  AbsenOperatorFrm: TAbsenOperatorFrm;
+
+implementation
+
+uses MainBrowseAbsen, DataFinger, DataSmart2k;
+
+{$R *.dfm}
+
+procedure TAbsenOperatorFrm.BitBtn1Click(Sender: TObject);
+begin
+  if BrowseFrm=nil then BrowseFrm:=TBrowseFrm.Create(Self);
+  BrowseFrm.Caption:='Absen';
+  BrowseFrm.vURLs:=cserver+edit1.text;
+  BrowseFrm.FindAddress;
+  BrowseFrm.Show;
+  Edit1.SetFocus;
+end;
+
+procedure TAbsenOperatorFrm.Edit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key=13 then
+  begin
+      BitBtn1.SetFocus;
+      BitBtn1Click(nil);
+  end;
+end;
+
+procedure TAbsenOperatorFrm.FormShow(Sender: TObject);
+begin
+  Edit1.SetFocus;
+  CommPortDriver1.Connect;
+end;
+
+procedure TAbsenOperatorFrm.CommPortDriver1ReceiveData(Sender: TObject;
+  DataPtr: Pointer; DataSize: Cardinal);
+var iLastLine, i: integer;
+    s, ss: string;
+begin
+  s := StringOfChar( ' ', DataSize );
+  move( DataPtr^, pchar(s)^, DataSize );
+  while pos( #0, s ) > 0 do
+    delete( s, pos( #0, s ), 1 );
+  if s = '' then
+    exit;
+  i := pos( #10, s );
+  while i <> 0 do
+  begin
+    delete( s, i, 1 );
+    i := pos( #10, s );
+  end;
+  i := pos( #13, s );
+  while i <> 0 do
+    begin
+      ss := copy( s, 1, i-1 );
+      delete( s, 1, i );
+      Edit1.Text:=ss;
+      BitBtn1Click(nil);
+      i := pos( #13, s );
+    end;
+
+end;
+
+procedure TAbsenOperatorFrm.LMDClock1Click(Sender: TObject);
+begin
+  if BrowseFrm=nil then BrowseFrm:=TBrowseFrm.Create(Self);
+  BrowseFrm.Caption:='Jam Kerja';
+  BrowseFrm.vURLs:=cserver_jam_kerja;
+  BrowseFrm.FindAddress;
+  BrowseFrm.Show;
+  Edit1.SetFocus;
+end;
+
+procedure TAbsenOperatorFrm.BitBtn2Click(Sender: TObject);
+begin
+    DataFingerFrm:=TDataFingerFrm.Create(Self);
+    DataFingerFrm.ShowModal;
+    DataFingerFrm.Free;
+end;
+
+procedure TAbsenOperatorFrm.BitBtn3Click(Sender: TObject);
+begin
+    DataSmart2kFrm:=TDataSmart2kFrm.Create(Self);
+    DataSmart2kFrm.ShowModal;
+    DataSmart2kFrm.Free;
+end;
+
+procedure TAbsenOperatorFrm.FormActivate(Sender: TObject);
+begin
+BitBtn3.Click;   //Absen Smart2k
+end;
+
+end.
+
+

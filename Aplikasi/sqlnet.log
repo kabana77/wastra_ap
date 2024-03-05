@@ -1,0 +1,180 @@
+
+
+***********************************************************************
+Fatal NI connect error 12535, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.12)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\RIKKY\New folder\KAB211119\Aplikasi\Kabana.exe)(HOST=RIKKY)(USER=ppt))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 09-MAY-2022 08:24:30
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12535, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.12)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\RIKKY\New folder\KAB211119\Aplikasi\Kabana.exe)(HOST=RIKKY)(USER=ppt))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 09-MAY-2022 08:26:26
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12535, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.22)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=PISMATEX)(CID=(PROGRAM=D:\RIKKY\New folder\KAB211119\Aplikasi\Kabana.exe)(HOST=RIKKY)(USER=ppt))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 15-JUN-2022 15:20:25
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12535, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.17)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\SC\PPN11%\PURCHASING\KAB211119\Aplikasi\Kabana.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 16-SEP-2022 07:43:31
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.7)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=KABANA)(CID=(PROGRAM=D:\SC\PPN11%\PURCHASING\KAB211119\Aplikasi\Kabana.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 01-JUL-2023 08:17:58
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.7)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=KABANA)(CID=(PROGRAM=D:\SC\PPN11%\PURCHASING\KAB211119\Aplikasi\Kabana.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 01-JUL-2023 08:18:06
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.7)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\SC\PPN11%\PURCHASING\KAB211119\Aplikasi\Kabana.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 01-JUL-2023 08:19:16
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.7)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\SC\PPN11%\PURCHASING\KAB211119\Aplikasi\Kabana.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 01-JUL-2023 08:19:22
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12535, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.10.100.21)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=pmputra)(CID=(PROGRAM=D:\SC\PPN11%\WS\KAB211119\Aplikasi\WS_purchase.exe)(HOST=CODING)(USER=Tukang?Kode))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.0.1.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.0.1.1.0 - Production
+  Time: 02-JAN-2024 15:44:07
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0

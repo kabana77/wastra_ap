@@ -1,0 +1,55 @@
+unit HakPerkiraan;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, Buttons, wwdblook, Wwdbdlg, Grids, Wwdbigrd,
+  Wwdbgrid, DB, Wwdatsrc;
+
+type
+  THakRekeningFrm = class(TForm)
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    dsQHakPerkiraan: TwwDataSource;
+    wwDBGrid1: TwwDBGrid;
+    LookPerkiraan: TwwDBLookupComboDlg;
+    RadioGroup1: TRadioGroup;
+    procedure LookPerkiraanCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure FormShow(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    vid_user : String;
+  end;
+
+var
+  HakRekeningFrm: THakRekeningFrm;
+
+implementation
+
+uses DM;
+
+{$R *.dfm}
+
+procedure THakRekeningFrm.LookPerkiraanCloseUp(Sender: TObject;
+  LookupTable, FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+     DMFrm.QHakPerkiraanID_USER.AsString:=vid_user;
+end;
+
+procedure THakRekeningFrm.FormShow(Sender: TObject);
+begin
+  DMFrm.visbg:=RadioGroup1.ItemIndex;
+end;
+
+procedure THakRekeningFrm.RadioGroup1Click(Sender: TObject);
+begin
+   DMFrm.visbg:=RadioGroup1.ItemIndex;
+end;
+
+end.
