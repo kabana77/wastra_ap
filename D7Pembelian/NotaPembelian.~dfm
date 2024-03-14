@@ -1,6 +1,6 @@
 object NotaPembelianFrm: TNotaPembelianFrm
-  Left = 438
-  Top = 211
+  Left = 267
+  Top = 76
   Width = 1176
   Height = 674
   Caption = 'Nota Pembayaran'
@@ -152,7 +152,7 @@ object NotaPembelianFrm: TNotaPembelianFrm
     Top = 41
     Width = 1160
     Height = 539
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clNavy
@@ -2767,9 +2767,9 @@ object NotaPembelianFrm: TNotaPembelianFrm
             1902.354166666667000000)
           BandType = rbTitle
           object QRLTitle2: TQRLabel
-            Left = 264
+            Left = 284
             Top = 24
-            Width = 190
+            Width = 151
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -2778,9 +2778,9 @@ object NotaPembelianFrm: TNotaPembelianFrm
             Frame.DrawRight = False
             Size.Values = (
               63.500000000000000000
-              698.500000000000000000
+              751.416666666666700000
               63.500000000000000000
-              502.708333333333300000)
+              399.520833333333300000)
             Alignment = taCenter
             AlignToBand = True
             AutoSize = True
@@ -3021,9 +3021,9 @@ object NotaPembelianFrm: TNotaPembelianFrm
             FontSize = 10
           end
           object QRExpr4: TQRExpr
-            Left = 523
+            Left = 558
             Top = 0
-            Width = 194
+            Width = 159
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -3032,9 +3032,9 @@ object NotaPembelianFrm: TNotaPembelianFrm
             Frame.DrawRight = False
             Size.Values = (
               63.500000000000000000
-              1383.770833333333000000
+              1476.375000000000000000
               0.000000000000000000
-              513.291666666666700000)
+              420.687500000000000000)
             Alignment = taRightJustify
             AlignToBand = False
             AutoSize = True

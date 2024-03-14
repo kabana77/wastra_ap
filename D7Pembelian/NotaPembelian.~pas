@@ -1109,7 +1109,7 @@ begin
   QTransaksi.SetVariable('no_reg_hutang',QBrowseNO_REG_HUTANG.AsInteger);
   QTransaksi.Open;
   vLokStat:=copy(QTransaksiNO_NOTA.AsString,11,1);
-  if vLokStat='P' then
+  if vLokStat='W' then
   begin
   QDetail.Close;
               QDetail.SQL.Text:='select a.kd_item, a.qty_po, a.qty_lpb, a.qty, a.satuan, a.rasio, a.harga,'+
@@ -1806,7 +1806,7 @@ BEGIN
               QAmbilNota.SetVariable('kurs',QTransaksiKURS.AsFloat);
               QAmbilNota.Execute;
               //--------------------
-              if vLokStat='P' then
+              if vLokStat='W' then
               begin
               QDetail.DisableControls;
               QDetail.Close;
@@ -1884,7 +1884,7 @@ BEGIN
 
 //------------------------------------ ------------------ ------------------ ------------------
               //--------------------
-              if vLokStat='P' then
+              if vLokStat='W' then
               begin
               QDetail.DisableControls;
               QDetail.Close;
